@@ -6,10 +6,8 @@ import {
   createReactClient,
   studioProvider,
 } from '@livepeer/react';
-import Image from 'next/image';
-import { Player } from '@livepeer/react';
 import * as React from 'react';
-import waterfallsPoster from '../../public/next.svg';
+
  
 const client = createReactClient({
   provider: studioProvider({ apiKey: '' }),
@@ -25,36 +23,16 @@ const livepeerTheme: ThemeConfig = {
   },
 };
 
-const playbackId =
-  'bafybeigtqixg4ywcem3p6sitz55wy6xvnr565s6kuwhznpwjices3mmxoe';
+
 export default function App({ Component, pageProps }: AppProps) {
   return( 
   <LivepeerConfig client={client} theme={livepeerTheme}>
-    <Player
-      title="Waterfalls"
-      playbackId={playbackId}
-      loop
-      autoPlay
-      showTitle={false}
-      muted
-      poster={<PosterImage />}
-    />
+      <Component {...pageProps} />
   </LivepeerConfig>
   )
 }
 
-const PosterImage = () => {
-  return (
-    <Image
-      src={waterfallsPoster}
-      alt="waterfull"
-      priority
-      placeholder="blur"
-      className="object-cover"
-      blurDataURL="https://theboutiqueadventurer.com/wp-content/uploads/2022/11/seljalandsfoss-waterfall.jpg.webp" //must be link not data:image
-    />
-  );
-};
+
  
 
  
